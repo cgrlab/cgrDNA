@@ -1,0 +1,108 @@
+## VarDict - Text to VCF {.tabset}
+
+```{r include = FALSE}
+require(tidyverse); require(rmarkdown); require(knitr); require(sevenbridges); 
+
+options(max.print = "99"); opts_knit$set(width = 99)
+opts_chunk$set(cache=FALSE, tidy=FALSE)
+
+source("../../cgc_auth.R")
+
+```
+
+### base command
+
+https://github.com/AstraZeneca-NGS/VarDictJava#program-workflow
+
+```{sh base command, eval=FALSE}
+
+cat [variant txt file] | /opt/VarDictJava/VarDict/var2vcf_valid.pl -N [sample_name] -E -f [min allele freq]
+
+```
+
+### i/o {.tabset}
+
+#### inputs 
+
+```{r inputs}
+
+inputs = list(
+  
+input(id = "variant_text_file", label = "variant_text_file", description = "variant_text_file", type = "File", separate = FALSE, position=1),
+  
+input(id = "minimum_allele_frequency", label = "minimum_allele_frequence", description = "minimum allele frequency", type = "float", position=3, prefix="-f")
+
+)
+
+```
+
+#### arguments
+
+```{r arguments}
+arguments = CCBList(
+
+CommandLineBinding(position = 2, prefix = "|", valueFrom = list('{ return "/opt/VarDictJava/VarDict/var2vcf_valid.pl -E -N " + $job.inputs.variant_text_file.metadata.sample_id}')),
+  
+
+CommandLineBinding(position = 201, prefix = ">", valueFrom = list('{return $job.inputs.variant_text_file.metadata.sample_id + ".vcf"}'))  
+  
+)
+```
+
+#### outputs
+
+```{r output}
+
+outputs = list(
+
+output(id = "converted_vcf", label = "converted_vcf", 
+description = "converted_Vcf", type = "File",
+inheritMetadataFrom = "#variant_text_file", metadata = list(from_tool = "converted_vcf"),
+glob = Expression(engine = "#cwl-js-engine", 
+script = '"*.vcf"'))
+)
+
+```
+
+### portability {.tabset}
+
+####docker
+
+``` cgrlab/vardictjava:latest ```
+
+https://hub.docker.com/r/cgrlab/vardictjava/
+
+####tool definition
+
+```{r 5 create tool object}
+
+tool <- Tool(
+id = "text_to_vcf", 
+label = "text_to_vcf",
+hints = requirements(docker(pull = "cgrlab/vardictjava:latest"), cpu(1), mem(1000)),
+
+baseCommand = "cat",
+
+inputs = inputs,
+  
+arguments = arguments,
+  
+outputs = outputs)
+
+```
+
+####cwl file
+
+```{r eval=create_cwl=="yes"}
+write(tool$toJSON(pretty = TRUE), "../apps/vardict_text_to_vcf.json")
+```
+
+####push app to cloud platform
+
+```{r eval=platform_push=="yes"}
+project$app_add("text_to_vcf", tool)
+```
+
+####notes
+
+

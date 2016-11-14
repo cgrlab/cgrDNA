@@ -1,0 +1,102 @@
+## VarDict - Test Strand Bias {.tabset}
+
+```{r include = FALSE}
+require(tidyverse); require(rmarkdown); require(knitr); require(sevenbridges); 
+
+options(max.print = "99"); opts_knit$set(width = 99)
+opts_chunk$set(cache=FALSE, tidy=FALSE)
+
+source("../../cgc_auth.R")
+
+```
+
+### base command
+
+https://github.com/AstraZeneca-NGS/VarDictJava#program-workflow
+
+```{sh base command, eval=FALSE}
+
+cat sampleA.txt | /opt/VarDictJava/VarDict/teststrandbias.R > sampleA_vardict_strand_filtered.txt
+
+```
+
+### i/o {.tabset}
+
+#### inputs 
+
+```{r inputs}
+
+inputs = list(
+  
+input(id = "variant_text_file", label = "variant_text_file", description = "variant_text_file", type = "File", separate = FALSE, position=1)
+
+)
+
+```
+
+#### arguments
+
+```{r arguments}
+arguments = CCBList(
+
+CommandLineBinding(position = 201, prefix = "| /opt/VarDictJava/VarDict/teststrandbias.R >", valueFrom = list('{return $job.inputs.variant_text_file.metadata.sample_id + "_vardict_strand_filtered.txt"}'))
+)
+```
+
+#### outputs
+
+```{r output}
+
+outputs = list(
+
+output(id = "strand_filtered", label = "strand_filtered", 
+description = "strand filtered", type = "File",
+inheritMetadataFrom = "#variant_text_file", metadata = list(from_tool = "test_strand_bias"),
+glob = Expression(engine = "#cwl-js-engine", 
+script = '"*.txt"'))
+)
+
+```
+
+### portability {.tabset}
+
+####docker
+
+``` cgrlab/vardictjava:latest ```
+
+https://hub.docker.com/r/cgrlab/vardictjava/
+
+####tool definition
+
+```{r 5 create tool object}
+
+tool <- Tool(
+id = "test_strand_bias", 
+label = "test_strand_bias",
+hints = requirements(docker(pull = "cgrlab/vardictjava:latest"), cpu(1), mem(1000)),
+
+baseCommand = "cat",
+
+inputs = inputs,
+  
+arguments = arguments,
+  
+outputs = outputs)
+
+```
+
+####cwl file
+
+```{r eval=create_cwl=="yes"}
+write(tool$toJSON(pretty = TRUE), "../apps/test_strand_bias.json")
+```
+
+####push app to cloud platform
+
+```{r eval=platform_push=="yes"}
+project$app_add("test_strand_bias", tool)
+```
+
+####notes
+
+
