@@ -1,0 +1,410 @@
+{
+  "requirements": [],
+  "sbg:createdBy": "dave",
+  "sbg:modifiedBy": "dave",
+  "sbg:canvas_y": 0,
+  "id": "https://cgc-api.sbgenomics.com/v2/apps/dave/dceg-wgs/sambamba-index/1/raw/",
+  "sbg:image_url": "https://cgc-brood.sbgenomics.com/static/dave/dceg-wgs/sambamba-index/1.png",
+  "sbg:canvas_x": 0,
+  "class": "Workflow",
+  "label": "sambamba_index",
+  "inputs": [
+    {
+      "label": "input",
+      "type": [
+        "File"
+      ],
+      "sbg:x": 163,
+      "id": "#input",
+      "sbg:y": 369,
+      "sbg:fileTypes": "BAM"
+    },
+    {
+      "sbg:suggestedValue": 16,
+      "sbg:toolDefaultValue": "8",
+      "label": "Number of threads",
+      "type": [
+        "null",
+        "int"
+      ],
+      "description": "Number of threads to use.",
+      "id": "#nthreads",
+      "sbg:altPrefix": "-t",
+      "sbg:category": "Execution"
+    }
+  ],
+  "sbg:validationErrors": [],
+  "sbg:sbgMaintained": false,
+  "sbg:canvas_zoom": 1,
+  "sbg:createdOn": 1476054671,
+  "sbg:revisionsInfo": [
+    {
+      "sbg:modifiedOn": 1476054671,
+      "sbg:modifiedBy": "dave",
+      "sbg:revisionNotes": "Copy of dave/rd172-dwr07/sambamba-index/1",
+      "sbg:revision": 0
+    },
+    {
+      "sbg:modifiedOn": 1476054718,
+      "sbg:modifiedBy": "dave",
+      "sbg:revisionNotes": null,
+      "sbg:revision": 1
+    }
+  ],
+  "sbg:modifiedOn": 1476054718,
+  "description": "",
+  "sbg:project": "dave/dceg-wgs",
+  "outputs": [
+    {
+      "source": [
+        "#Sambamba_Index.index"
+      ],
+      "required": false,
+      "label": "index",
+      "type": [
+        "null",
+        "File"
+      ],
+      "sbg:x": 1112,
+      "id": "#index",
+      "sbg:y": 424,
+      "sbg:includeInPorts": true
+    }
+  ],
+  "sbg:latestRevision": 1,
+  "sbg:id": "dave/dceg-wgs/sambamba-index/1",
+  "sbg:contributors": [
+    "dave"
+  ],
+  "steps": [
+    {
+      "run": {
+        "y": 371.015625,
+        "stdout": "",
+        "sbg:links": [
+          {
+            "id": "http://lomereiter.github.io/sambamba/docs/sambamba-view.html",
+            "label": "Homepage"
+          },
+          {
+            "id": "https://github.com/lomereiter/sambamba",
+            "label": "Source code"
+          },
+          {
+            "id": "https://github.com/lomereiter/sambamba/wiki",
+            "label": "Wiki"
+          },
+          {
+            "id": "https://github.com/lomereiter/sambamba/releases/tag/v0.5.9",
+            "label": "Download"
+          },
+          {
+            "id": "http://lomereiter.github.io/sambamba/docs/sambamba-view.html",
+            "label": "Publication"
+          }
+        ],
+        "sbg:categories": [
+          "SAM/BAM-Processing",
+          "Indexing"
+        ],
+        "requirements": [
+          {
+            "id": "#cwl-js-engine",
+            "class": "ExpressionEngineRequirement",
+            "requirements": [
+              {
+                "dockerPull": "rabix/js-engine",
+                "class": "DockerRequirement"
+              }
+            ]
+          }
+        ],
+        "sbg:toolkit": "Sambamba",
+        "sbg:createdBy": "dave",
+        "sbg:modifiedBy": "dave",
+        "arguments": [
+          {
+            "prefix": "",
+            "position": 100,
+            "valueFrom": {
+              "script": "{\n  if ((!(typeof $job.inputs.input_bai_file !== \"undefined\")))\n  {\n  if ($job.inputs.input_bam)\n  {\n    \n    filepath = $job.inputs.input_bam.path\n   \tfilename = filepath.split('/').slice(-1)[0]\n    \n    index_name = filename.concat(\".bai\")\n    \n    return index_name\n  }\n}\n}\n\n",
+              "engine": "#cwl-js-engine",
+              "class": "Expression"
+            },
+            "separate": true
+          }
+        ],
+        "id": "dave/rd172-dwr06/sambamba-index-0-5-9/0",
+        "sbg:revisionNotes": "Copy of admin/sbg-public-data/sambamba-index-0-5-9/5",
+        "sbg:cmdPreview": "/opt/sambamba_0.5.9/sambamba_v0.5.9 index  example.bam  example.bam.bai",
+        "sbg:license": "GNU General Public License v2.0 only",
+        "sbg:image_url": null,
+        "successCodes": [],
+        "class": "CommandLineTool",
+        "label": "Sambamba Index",
+        "inputs": [
+          {
+            "sbg:toolDefaultValue": "TRUE",
+            "label": "Output input BAM",
+            "sbg:stageInput": null,
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Send the input BAM to the output thus creating redundant data.",
+            "id": "#redundancy",
+            "sbg:category": "Execution"
+          },
+          {
+            "sbg:toolDefaultValue": "8",
+            "label": "Number of threads",
+            "inputBinding": {
+              "prefix": "--nthreads=",
+              "valueFrom": {
+                "script": "{\n  if (!(typeof $job.inputs.input_bai_file !== \"undefined\"))\n  {\n    if ($job.inputs.nthreads)\n    \treturn $job.inputs.nthreads\n\telse\n    \treturn 8\n  }\n}\n\n",
+                "engine": "#cwl-js-engine",
+                "class": "Expression"
+              },
+              "separate": false,
+              "sbg:cmdInclude": true
+            },
+            "type": [
+              "null",
+              "int"
+            ],
+            "description": "Number of threads to use.",
+            "id": "#nthreads",
+            "sbg:altPrefix": "-t",
+            "sbg:category": "Execution"
+          },
+          {
+            "required": true,
+            "label": "Input file",
+            "sbg:stageInput": "link",
+            "inputBinding": {
+              "position": 99,
+              "itemSeparator": " ",
+              "valueFrom": {
+                "script": "{\n  if ((!(typeof $job.inputs.input_bai_file !== \"undefined\")))\n  {\n    return $job.inputs.input_bam.path.split('/').slice(-1)[0]\n  }\n}",
+                "engine": "#cwl-js-engine",
+                "class": "Expression"
+              },
+              "separate": true,
+              "sbg:cmdInclude": true
+            },
+            "type": [
+              "File"
+            ],
+            "description": "BAM or CRAM file.",
+            "id": "#input_bam",
+            "sbg:fileTypes": "BAM, CRAM",
+            "sbg:category": "File input"
+          },
+          {
+            "required": false,
+            "label": "Input BAI(BAM index) file",
+            "sbg:stageInput": "link",
+            "type": [
+              "null",
+              "File"
+            ],
+            "description": "Input BAI(BAM index) file.",
+            "id": "#input_bai_file",
+            "sbg:fileTypes": "BAI",
+            "sbg:category": "File input"
+          },
+          {
+            "label": "CRAM input",
+            "inputBinding": {
+              "itemSeparator": null,
+              "valueFrom": {
+                "script": "{\n  if ((!(typeof $job.inputs.input_bai_file !== \"undefined\")) && ($job.inputs.cram_input === true))\n  {\n    return \"--cram-input\" \n  }\n}",
+                "engine": "#cwl-js-engine",
+                "class": "Expression"
+              },
+              "separate": true,
+              "sbg:cmdInclude": true
+            },
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Specify that input is in CRAM format.",
+            "id": "#cram_input",
+            "sbg:category": "Execution"
+          },
+          {
+            "label": "Check bins",
+            "inputBinding": {
+              "valueFrom": {
+                "script": "{\n  if ((!(typeof $job.inputs.input_bai_file !== \"undefined\")) && ($job.inputs.check_bins === true))\n  {\n    return \"--check-bins\" \n  }\n}",
+                "engine": "#cwl-js-engine",
+                "class": "Expression"
+              },
+              "separate": true,
+              "sbg:cmdInclude": true
+            },
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Check that bins are set correctly.",
+            "id": "#check_bins",
+            "sbg:altPrefix": "c",
+            "sbg:category": "Execution"
+          }
+        ],
+        "sbg:validationErrors": [],
+        "sbg:sbgMaintained": false,
+        "sbg:createdOn": 1474418814,
+        "stdin": "",
+        "sbg:revisionsInfo": [
+          {
+            "sbg:modifiedOn": 1474418814,
+            "sbg:modifiedBy": "dave",
+            "sbg:revisionNotes": "Copy of admin/sbg-public-data/sambamba-index-0-5-9/5",
+            "sbg:revision": 0
+          }
+        ],
+        "sbg:toolAuthor": "Artem Tarasov",
+        "sbg:modifiedOn": 1474418814,
+        "description": "Sambamba Index creates an index for a BAM or CRAM file.",
+        "sbg:project": "dave/rd172-dwr06",
+        "outputs": [
+          {
+            "label": "Indexed BAM file",
+            "type": [
+              "null",
+              "File"
+            ],
+            "outputBinding": {
+              "sbg:inheritMetadataFrom": "#input_bam",
+              "glob": {
+                "script": "{\n  if ($job.inputs.redundancy === false) {\n    \n    return ''\n    \n  } else {\n    \n    return '*.bam'\n    \n  }\n}",
+                "engine": "#cwl-js-engine",
+                "class": "Expression"
+              },
+              "secondaryFiles": [
+                "^.bai",
+                ".bai"
+              ]
+            },
+            "description": "Bam file.",
+            "id": "#indexed_bam",
+            "sbg:fileTypes": "BAM"
+          },
+          {
+            "label": "Index file",
+            "type": [
+              "null",
+              "File"
+            ],
+            "outputBinding": {
+              "sbg:inheritMetadataFrom": "#input_bam",
+              "glob": "*.bai"
+            },
+            "description": "Indexed file.",
+            "id": "#index",
+            "sbg:fileTypes": "BAI"
+          }
+        ],
+        "sbg:latestRevision": 0,
+        "temporaryFailCodes": [],
+        "sbg:id": "dave/rd172-dwr06/sambamba-index-0-5-9/0",
+        "x": 722,
+        "baseCommand": [
+          {
+            "script": "{\n  if (typeof $job.inputs.input_bai_file !== \"undefined\"){\n \treturn\"echo Skipping index step because BAI file is provided on the input.\"\n  }\n  else{\n    return \"/opt/sambamba_0.5.9/sambamba_v0.5.9 index\"\n  }\n}",
+            "engine": "#cwl-js-engine",
+            "class": "Expression"
+          }
+        ],
+        "sbg:contributors": [
+          "dave"
+        ],
+        "sbg:toolkitVersion": "0.5.9",
+        "sbg:job": {
+          "inputs": {
+            "cram_input": false,
+            "input_bam": {
+              "path": "/root/dir/example.bam"
+            },
+            "check_bins": false,
+            "nthreads": 0,
+            "redundancy": true
+          },
+          "allocatedResources": {
+            "mem": 1024,
+            "cpu": 1
+          }
+        },
+        "hints": [
+          {
+            "dockerImageId": "59e577b13d5d",
+            "dockerPull": "images.sbgenomics.com/mladenlsbg/sambamba:0.5.9",
+            "class": "DockerRequirement"
+          },
+          {
+            "value": 1,
+            "class": "sbg:CPURequirement"
+          },
+          {
+            "value": 1024,
+            "class": "sbg:MemRequirement"
+          }
+        ],
+        "sbg:copyOf": "admin/sbg-public-data/sambamba-index-0-5-9/5",
+        "sbg:revision": 0
+      },
+      "outputs": [
+        {
+          "id": "#Sambamba_Index.indexed_bam"
+        },
+        {
+          "id": "#Sambamba_Index.index"
+        }
+      ],
+      "inputs": [
+        {
+          "id": "#Sambamba_Index.redundancy"
+        },
+        {
+          "default": 16,
+          "source": [
+            "#nthreads"
+          ],
+          "id": "#Sambamba_Index.nthreads"
+        },
+        {
+          "source": [
+            "#input"
+          ],
+          "id": "#Sambamba_Index.input_bam"
+        },
+        {
+          "id": "#Sambamba_Index.input_bai_file"
+        },
+        {
+          "id": "#Sambamba_Index.cram_input"
+        },
+        {
+          "id": "#Sambamba_Index.check_bins"
+        }
+      ],
+      "sbg:x": 722,
+      "id": "#Sambamba_Index",
+      "sbg:y": 371.015625
+    }
+  ],
+  "sbg:batchBy": {
+    "type": "item"
+  },
+  "sbg:batchInput": "#input",
+  "hints": [
+    {
+      "value": "c4.8xlarge.ebs15",
+      "class": "sbg:AWSInstanceType"
+    }
+  ],
+  "sbg:revision": 1
+}

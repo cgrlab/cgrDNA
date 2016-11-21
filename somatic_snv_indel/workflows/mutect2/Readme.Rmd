@@ -1,0 +1,30 @@
+---
+title: "Mutect2 Workflow"
+output:
+  github_document:
+    toc: true
+    toc_depth: 2
+    fig_width: 5
+    fig_height: 5
+    dev: jpeg
+---
+
+```{r include = FALSE}
+require(tidyverse); require(rmarkdown); require(knitr); require(sevenbridges); 
+
+options(max.print = "99"); opts_knit$set(width = 99)
+opts_chunk$set(cache=FALSE, tidy=FALSE)
+
+```
+
+## DreamSet Comparison Workflow Steps
+
+### Step 1 Run WGS Mutect2
+
+### Step 2 Merge sections
+
+### Step 3 Prepare for comparisions
+
+### Step 4 Dreamset compmare
+
+### Step 5 Count
