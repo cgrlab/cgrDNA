@@ -1,0 +1,398 @@
+{
+  "label": "mutect2",
+  "sbg:createdBy": "dave",
+  "sbg:validationErrors": [],
+  "sbg:latestRevision": 15,
+  "sbg:createdOn": 1479651044,
+  "sbg:job": {
+    "inputs": {
+      "COSMIC_database": {
+        "path": "/path/to/COSMIC_database.vcf",
+        "size": 0,
+        "secondaryFiles": [
+          {
+            "path": ""
+          }
+        ],
+        "class": "File"
+      },
+      "dbsnp_database": {
+        "path": "/path/to/dbsnp_database.vcf",
+        "size": 0,
+        "secondaryFiles": [],
+        "class": "File"
+      },
+      "BED_file": [
+        {
+          "path": "/path/to/BED_file-1.ext",
+          "size": 0,
+          "secondaryFiles": [],
+          "class": "File"
+        },
+        {
+          "path": "/path/to/BED_file-2.ext",
+          "size": 0,
+          "secondaryFiles": [],
+          "class": "File"
+        }
+      ],
+      "normal_panel": {
+        "path": "/path/to/normal_panel.vcf",
+        "size": 0,
+        "secondaryFiles": [],
+        "class": "File"
+      },
+      "genome_ref": {
+        "path": "/path/to/hg19.fasta",
+        "size": 0,
+        "secondaryFiles": [
+          {
+            "path": ".fai"
+          },
+          {
+            "path": "^.dict"
+          }
+        ],
+        "class": "File"
+      },
+      "BAM_pair": [
+        {
+          "path": "/path/to/chr19_normal.bam",
+          "size": 0,
+          "secondaryFiles": [],
+          "metadata": {
+            "sample_type": "Normal tissue",
+            "sample_id": "sampleN01234",
+            "case_id": "SA01234"
+          },
+          "class": "File"
+        },
+        {
+          "path": "/path/to/chr19_tumor.bam",
+          "size": 0,
+          "secondaryFiles": [],
+          "metadata": {
+            "sample_type": "Tumor tissue",
+            "sample_id": "sampleT543",
+            "case_id": "SA01234"
+          },
+          "class": "File"
+        }
+      ]
+    },
+    "allocatedResources": {
+      "mem": 1000,
+      "cpu": 1
+    }
+  },
+  "id": "https://api.sbgenomics.com/v2/apps/dave/cgrwgs/mutect2/15/raw/",
+  "successCodes": [],
+  "temporaryFailCodes": [],
+  "sbg:project": "dave/cgrwgs",
+  "outputs": [
+    {
+      "outputBinding": {
+        "glob": {
+          "engine": "#cwl-js-engine",
+          "class": "Expression",
+          "script": "\"std.out\""
+        },
+        "sbg:inheritMetadataFrom": "#BAM_tumor"
+      },
+      "id": "#std_out",
+      "type": [
+        "null",
+        "File"
+      ]
+    },
+    {
+      "outputBinding": {
+        "glob": {
+          "engine": "#cwl-js-engine",
+          "class": "Expression",
+          "script": "\"*.vcf\""
+        },
+        "sbg:inheritMetadataFrom": "#BAM_tumor"
+      },
+      "id": "#vcf",
+      "type": [
+        "null",
+        "File"
+      ]
+    }
+  ],
+  "sbg:modifiedOn": 1479834349,
+  "sbg:sbgMaintained": false,
+  "stdout": "std.out",
+  "sbg:revisionsInfo": [
+    {
+      "sbg:modifiedOn": 1479651044,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 0,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479733076,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 1,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479733194,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 2,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479734488,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 3,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479734784,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 4,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479750707,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 5,
+      "sbg:revisionNotes": "added .fai as secondary file to ref"
+    },
+    {
+      "sbg:modifiedOn": 1479752986,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 6,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479753062,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 7,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479753143,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 8,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479753555,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 9,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479753796,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 10,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479780981,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 11,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479818253,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 12,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479819408,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 13,
+      "sbg:revisionNotes": null
+    },
+    {
+      "sbg:modifiedOn": 1479832171,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 14,
+      "sbg:revisionNotes": "copying in the COSMIC and dbsnp databases"
+    },
+    {
+      "sbg:modifiedOn": 1479834349,
+      "sbg:modifiedBy": "dave",
+      "sbg:revision": 15,
+      "sbg:revisionNotes": null
+    }
+  ],
+  "sbg:image_url": null,
+  "arguments": [
+    {
+      "separate": true,
+      "prefix": "-o",
+      "valueFrom": {
+        "engine": "#cwl-js-engine",
+        "class": "Expression",
+        "script": "\n\n\nvar normal = $job.inputs.BAM_pair.map(function(elem){\n\nif(elem.metadata.sample_type == \"Normal tissue\"){return elem.metadata.case_id + \"_N_\" + elem.metadata.sample_id + \"_T_\"}\n\n}).join(\"\")\n\n\nvar tumor = $job.inputs.BAM_pair.map(function(elem){\n\nif(elem.metadata.sample_type == \"Tumor tissue\"){return elem.metadata.sample_id + \".vcf\"}\n\n}).join(\"\")\n\n\n\nnormal + tumor"
+      }
+    },
+    {
+      "separate": true,
+      "prefix": "-I:normal",
+      "valueFrom": {
+        "engine": "#cwl-js-engine",
+        "class": "Expression",
+        "script": "\n\n$job.inputs.BAM_pair.map(function(elem){\n\nif(elem.metadata.sample_type == \"Normal tissue\"){return elem.path}\n\n}).join(\"\")\n\n\n\n\n"
+      }
+    },
+    {
+      "separate": true,
+      "prefix": "-I:tumor",
+      "valueFrom": {
+        "engine": "#cwl-js-engine",
+        "class": "Expression",
+        "script": "$job.inputs.BAM_pair.map(function(elem){\n\nif(elem.metadata.sample_type == \"Tumor tissue\"){return elem.path}\n\n}).join(\"\")\n"
+      }
+    }
+  ],
+  "hints": [
+    {
+      "value": 1,
+      "class": "sbg:CPURequirement"
+    },
+    {
+      "value": 1000,
+      "class": "sbg:MemRequirement"
+    },
+    {
+      "dockerPull": "cgrlab/gatk-protected:latest",
+      "class": "DockerRequirement",
+      "dockerImageId": ""
+    }
+  ],
+  "sbg:id": "dave/cgrwgs/mutect2/15",
+  "stdin": "",
+  "class": "CommandLineTool",
+  "sbg:cmdPreview": "java -Xmx16g -jar /opt/GenomeAnalysisTK.jar -T MuTect2 -o SA01234_N_sampleN01234_T_sampleT543.vcf -I:normal /path/to/chr19_normal.bam -I:tumor /path/to/chr19_tumor.bam > std.out",
+  "sbg:revision": 15,
+  "baseCommand": [
+    "java",
+    "-Xmx16g",
+    "-jar",
+    "/opt/GenomeAnalysisTK.jar",
+    "-T",
+    "MuTect2"
+  ],
+  "sbg:contributors": [
+    "dave"
+  ],
+  "sbg:modifiedBy": "dave",
+  "requirements": [
+    {
+      "id": "#cwl-js-engine",
+      "class": "ExpressionEngineRequirement",
+      "requirements": [
+        {
+          "dockerPull": "rabix/js-engine",
+          "class": "DockerRequirement"
+        }
+      ]
+    }
+  ],
+  "description": "",
+  "inputs": [
+    {
+      "id": "#genome_ref",
+      "inputBinding": {
+        "separate": true,
+        "secondaryFiles": [
+          ".fai",
+          "^.dict"
+        ],
+        "prefix": "-R",
+        "sbg:cmdInclude": true
+      },
+      "sbg:fileTypes": "fasta",
+      "type": [
+        "null",
+        "File"
+      ]
+    },
+    {
+      "id": "#COSMIC_database",
+      "inputBinding": {
+        "separate": true,
+        "secondaryFiles": [
+          ""
+        ],
+        "prefix": "--cosmic",
+        "sbg:cmdInclude": true
+      },
+      "sbg:stageInput": "copy",
+      "type": [
+        "null",
+        "File"
+      ]
+    },
+    {
+      "id": "#dbsnp_database",
+      "inputBinding": {
+        "separate": true,
+        "prefix": "--dbsnp",
+        "sbg:cmdInclude": true
+      },
+      "sbg:stageInput": "copy",
+      "type": [
+        "null",
+        "File"
+      ]
+    },
+    {
+      "id": "#BED_file",
+      "inputBinding": {
+        "separate": true,
+        "prefix": "-L",
+        "itemSeparator": null,
+        "sbg:cmdInclude": true
+      },
+      "sbg:stageInput": "copy",
+      "type": [
+        "null",
+        {
+          "items": "File",
+          "type": "array"
+        }
+      ]
+    },
+    {
+      "id": "#BAM_pair",
+      "inputBinding": {
+        "valueFrom": {
+          "engine": "#cwl-js-engine",
+          "class": "Expression",
+          "script": "null"
+        },
+        "secondaryFiles": [
+          ".bai"
+        ],
+        "sbg:cmdInclude": true
+      },
+      "type": [
+        "null",
+        {
+          "items": "File",
+          "type": "array"
+        }
+      ]
+    },
+    {
+      "id": "#normal_panel",
+      "inputBinding": {
+        "separate": true,
+        "prefix": "--normal_panel",
+        "sbg:cmdInclude": true
+      },
+      "type": [
+        "null",
+        "File"
+      ]
+    }
+  ]
+}

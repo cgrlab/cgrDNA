@@ -18,3 +18,7 @@ opts_chunk$set(cache=FALSE, tidy=FALSE)
 ```
 
 ## Mutect2
+
+
+```{r child = '~/cgrWGS/somatic_snv_indel/workflows/mutect2/Readme.Rmd'}
+```
