@@ -1,6 +1,6 @@
 {
-  "sbg:latestRevision": 13,
-  "sbg:revision": 13,
+  "sbg:latestRevision": 14,
+  "sbg:revision": 14,
   "sbg:revisionsInfo": [
     {
       "sbg:modifiedOn": 1479733778,
@@ -85,6 +85,12 @@
       "sbg:revision": 13,
       "sbg:modifiedBy": "dave",
       "sbg:revisionNotes": "copying bed file in"
+    },
+    {
+      "sbg:modifiedOn": 1479840756,
+      "sbg:revision": 14,
+      "sbg:modifiedBy": "dave",
+      "sbg:revisionNotes": "made vcf an array output in the glob."
     }
   ],
   "sbg:sbgMaintained": false,
@@ -93,8 +99,8 @@
     "dave"
   ],
   "sbg:createdOn": 1479733778,
-  "sbg:image_url": "https://brood.sbgenomics.com/static/dave/cgrwgs/mutect2-wf-1/13.png",
-  "sbg:modifiedOn": 1479834373,
+  "sbg:image_url": "https://brood.sbgenomics.com/static/dave/cgrwgs/mutect2-wf-1/14.png",
+  "sbg:modifiedOn": 1479840756,
   "sbg:batchBy": {
     "criteria": [
       "metadata.sample_id"
@@ -102,21 +108,6 @@
     "type": "criteria"
   },
   "outputs": [
-    {
-      "sbg:x": 1264.0000000000005,
-      "id": "#vcf",
-      "source": [
-        "#mutect2.vcf"
-      ],
-      "sbg:includeInPorts": true,
-      "sbg:y": 264.33331553141284,
-      "type": [
-        "null",
-        "File"
-      ],
-      "label": "vcf",
-      "required": false
-    },
     {
       "sbg:x": 1217.6667480468752,
       "id": "#std_out",
@@ -131,6 +122,23 @@
       ],
       "label": "std_out",
       "required": false
+    },
+    {
+      "sbg:x": 1215.9999593098962,
+      "id": "#vcf",
+      "source": [
+        "#mutect2.vcf"
+      ],
+      "sbg:includeInPorts": true,
+      "sbg:y": 270.66665649414074,
+      "type": [
+        "null",
+        {
+          "items": "File",
+          "type": "array"
+        }
+      ],
+      "label": "vcf"
     }
   ],
   "inputs": [
@@ -210,10 +218,10 @@
       "sbg:y": 581.3333536783856
     }
   ],
-  "sbg:id": "dave/cgrwgs/mutect2-wf-1/13",
+  "sbg:id": "dave/cgrwgs/mutect2-wf-1/14",
   "sbg:canvas_y": -31,
   "sbg:canvas_zoom": 0.7499999999999998,
-  "id": "https://api.sbgenomics.com/v2/apps/dave/cgrwgs/mutect2-wf-1/13/raw/",
+  "id": "https://api.sbgenomics.com/v2/apps/dave/cgrwgs/mutect2-wf-1/14/raw/",
   "hints": [
     {
       "class": "sbg:AWSInstanceType",
@@ -273,7 +281,7 @@
       ],
       "sbg:y": 381.20001220703136,
       "run": {
-        "sbg:latestRevision": 15,
+        "sbg:latestRevision": 16,
         "baseCommand": [
           "java",
           "-Xmx16g",
@@ -282,7 +290,7 @@
           "-T",
           "MuTect2"
         ],
-        "sbg:revision": 15,
+        "sbg:revision": 16,
         "sbg:revisionsInfo": [
           {
             "sbg:modifiedOn": 1479651044,
@@ -379,6 +387,12 @@
             "sbg:revision": 15,
             "sbg:modifiedBy": "dave",
             "sbg:revisionNotes": null
+          },
+          {
+            "sbg:modifiedOn": 1479840718,
+            "sbg:revision": 16,
+            "sbg:modifiedBy": "dave",
+            "sbg:revisionNotes": null
           }
         ],
         "sbg:sbgMaintained": false,
@@ -388,7 +402,7 @@
         ],
         "sbg:createdOn": 1479651044,
         "label": "mutect2",
-        "sbg:modifiedOn": 1479834349,
+        "sbg:modifiedOn": 1479840718,
         "requirements": [
           {
             "id": "#cwl-js-engine",
@@ -422,7 +436,10 @@
             "id": "#vcf",
             "type": [
               "null",
-              "File"
+              {
+                "items": "File",
+                "type": "array"
+              }
             ],
             "outputBinding": {
               "glob": {
@@ -533,9 +550,9 @@
             ]
           }
         ],
-        "sbg:id": "dave/cgrwgs/mutect2/15",
+        "sbg:id": "dave/cgrwgs/mutect2/16",
         "temporaryFailCodes": [],
-        "id": "https://api.sbgenomics.com/v2/apps/dave/cgrwgs/mutect2/15/raw/",
+        "id": "https://api.sbgenomics.com/v2/apps/dave/cgrwgs/mutect2/16/raw/",
         "description": "",
         "hints": [
           {
@@ -678,7 +695,7 @@
   "sbg:canvas_x": 88,
   "sbg:validationErrors": [],
   "class": "Workflow",
-  "sbg:revisionNotes": "copying bed file in",
+  "sbg:revisionNotes": "made vcf an array output in the glob.",
   "description": "",
   "requirements": [],
   "sbg:batchInput": "#BAM_pair"

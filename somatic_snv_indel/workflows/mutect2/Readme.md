@@ -3,7 +3,7 @@ Mutect2 Workflow
 
 -   [DreamSet Comparison Workflow Steps](#dreamset-comparison-workflow-steps)
 
-<a href="https://brood.sbgenomics.com/static/dave/cgrwgs/mutect2-wf-1/13.png" target="_blank"> <img width="1200" border="0" align="center"src="https://brood.sbgenomics.com/static/dave/cgrwgs/mutect2-wf-1/13.png"/> </a>
+<a href="https://brood.sbgenomics.com/static/dave/cgrwgs/mutect2-wf-1/13.png" target="_blank"> <img width="1200" border="0" align="center"src="https://brood.sbgenomics.com/static/dave/cgrwgs/mutect2-wf-1/14.png"/> </a>
 
 DreamSet Comparison Workflow Steps
 ----------------------------------
