@@ -1,4 +1,4 @@
-require(tidyverse); require(jsonlite)
+require(jsonlite)
 
 output = file(args_vcf_json_out, open = "wb")
 json_df = stream_in(file(args_vcf_json_in$path), pagesize=1,
