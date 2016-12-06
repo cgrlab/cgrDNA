@@ -1,2 +1,2 @@
-# cgrWGS
+# cgrDNA
  
